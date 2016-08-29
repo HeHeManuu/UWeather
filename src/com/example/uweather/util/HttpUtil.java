@@ -8,7 +8,17 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.R.string;
+import android.os.Message;
 
 /**
  * @author   Manuuuuu 
@@ -21,7 +31,29 @@ public class HttpUtil {
 			
 			@Override
 			public void run() {
-				HttpURLConnection connection=null;
+				
+				try {
+					String response=null;
+					StringBuilder url=new StringBuilder();
+					url.append(address);
+					HttpClient httpClient=new DefaultHttpClient();
+					HttpGet httpGet=new HttpGet(url.toString());
+					httpGet.addHeader("Accept-Language","zh-CN");
+					HttpResponse httpResponse=httpClient.execute(httpGet);
+					if (httpResponse.getStatusLine().getStatusCode()==200) {
+						HttpEntity entity=httpResponse.getEntity();
+						response=EntityUtils.toString(entity,"utf-8");
+						}
+					if (listener!=null) {
+						listener.onFinish(response);
+					}
+				} catch (Exception e) {
+					if (listener!=null) {
+						listener.onError(e);
+					}
+					
+				}
+				/*HttpURLConnection connection=null;
 				try {
 					URL url=new URL(address);
 					connection=(HttpURLConnection)url.openConnection();
@@ -29,7 +61,7 @@ public class HttpUtil {
 					connection.setConnectTimeout(8000);
 					connection.setReadTimeout(8000);
 					InputStream in=connection.getInputStream();
-					BufferedReader reader=new BufferedReader(new InputStreamReader(in));
+					BufferedReader reader=new BufferedReader(new InputStreamReader(in,"UTF-8"));
 					StringBuilder response=new StringBuilder();
 					String line;
 					while ((line=reader.readLine())!=null) {
@@ -41,6 +73,7 @@ public class HttpUtil {
 						listener.onFinish(response.toString());
 					}
 				} catch (Exception e) {
+					e.printStackTrace();
 					if (listener!=null) {
 						listener.onError(e);
 					}
@@ -48,7 +81,7 @@ public class HttpUtil {
 					if (connection!=null) {
 			            connection.disconnect();
 					}
-				}
+				}*/
 				
 			}
 		}).start();
