@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.apache.http.HttpEntity;
@@ -17,7 +18,10 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.R.integer;
 import android.R.string;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Message;
 
 /**
@@ -86,5 +90,50 @@ public class HttpUtil {
 			}
 		}).start();
 	}
+	
+	/**
+	 * 通过网络路径返回图片
+	 */
+	public static void returnBitMap(final String url,final int i,final HttpCallbackListener listener) {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				URL myFileUrl = null;
+				Bitmap bitmap = null;
+				try {
+				   myFileUrl = new URL(url);
+				  } catch (MalformedURLException e) {
+				     e.printStackTrace();
+				   }
+				HttpURLConnection connection=null;
+				try {
+				    connection = (HttpURLConnection) myFileUrl.openConnection();
+				    connection.setRequestMethod("GET");
+					connection.setConnectTimeout(8000);
+					connection.setReadTimeout(8000);
+					InputStream in=connection.getInputStream();
+				    bitmap = BitmapFactory.decodeStream(in);
+				    in.close();
+				
+				if (listener!=null) {
+					//回调
+					listener.onFinsh(bitmap,i);
+				}
+				} catch (Exception e) {
+				    e.printStackTrace();
+			
+				if (listener!=null) {
+					//回调
+					listener.onError(e);
+				}
+				}finally {
+					connection.disconnect();
+				}
+				
+			}
+		}).start();
+		
+		}
 
 }

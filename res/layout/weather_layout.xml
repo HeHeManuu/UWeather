@@ -9,6 +9,14 @@
         android:layout_height="50dp"
         android:background="#484E61" >
 
+        <Button
+            android:id="@+id/switch_city"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/home" />
+
         <TextView
             android:id="@+id/city_name"
             android:layout_width="wrap_content"
@@ -17,14 +25,22 @@
             android:textColor="#fff"
             android:textSize="24sp" />
 
+        <Button
+            android:id="@+id/refresh_weather"
+             android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/refresh"/>
+
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp" 
-        android:layout_weight="1"
-        android:background="#27A5F9">
-        
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:background="#27A5F9" >
 
         <TextView
             android:id="@+id/publish_text"
@@ -72,7 +88,7 @@
                 android:textColor="#FFF"
                 android:textSize="40sp" />
            
-                 <TextView
+                <!--  <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -81,18 +97,231 @@
                 android:text="~"
                 android:textColor="#FFF"
                 android:textSize="40sp" />
-                  <TextView
+                <TextView
                 android:id="@+id/temp2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textColor="#FFF"
-                android:textSize="40sp" />
+                android:textSize="40sp" /> -->
 
             </LinearLayout>
 
         </LinearLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4" >
+       <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:orientation="vertical" >
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.20"
+            android:orientation="vertical" >
+            
+              <ImageView
+                android:id="@+id/next_weather_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+               
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/d01" />
+            <TextView
+                android:id="@+id/next_weather_desp"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textColor="#000"
+                android:textSize="15sp" 
+                android:text="多云"/>
+            
+              <TextView
+                  android:id="@+id/next_temp"
+                  android:layout_width="wrap_content"
+                  android:layout_height="0dp"
+                  android:layout_gravity="center_horizontal"
+                  android:layout_weight="0.25"
+                  android:text="20°/32°"
+                  android:textColor="#000"
+                  android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/next_day"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:layout_gravity="center_horizontal"
+                android:text="周三"
+                android:textColor="#000"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+        <ImageView   
+        android:layout_width="1dp"  
+        android:layout_height="match_parent"  
+        android:background="#EAEAEA"  
+        />  
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.20"
+            android:orientation="vertical" >
+            
+            <ImageView
+                android:id="@+id/next2_weather_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+               
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/d01" />
+            <TextView
+                android:id="@+id/next2_weather_desp"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textColor="#000"
+                android:textSize="13sp" 
+                android:text="多云"/>
+            
+              <TextView
+                android:id="@+id/next2_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:text="20°/32°" />
+
+            <TextView
+                android:id="@+id/next2_day"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:layout_gravity="center_horizontal"
+                android:text="周三"
+                android:textColor="#000"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#EAEAEA" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.20"
+            android:orientation="vertical" >
+            
+            <ImageView
+                android:id="@+id/next3_weather_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+               
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/d01" />
+            <TextView
+                android:id="@+id/next3_weather_desp"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textColor="#000"
+                android:textSize="15sp" 
+                android:text="多云"/>
+            
+              <TextView
+                android:id="@+id/next3_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:text="20°/32°" />
+
+            <TextView
+                android:id="@+id/next3_day"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:layout_gravity="center_horizontal"
+                android:text="周三"
+                android:textColor="#000"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#EAEAEA" />
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.20"
+            android:orientation="vertical" >
+            
+            <ImageView
+                android:id="@+id/next4_weather_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+               
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/d01" />
+            <TextView
+                android:id="@+id/next4_weather_desp"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textColor="#000"
+                android:textSize="15sp" 
+                android:text="多云"/>
+            
+              <TextView
+                  android:id="@+id/next4_temp"
+                  android:layout_width="wrap_content"
+                  android:layout_height="0dp"
+                  android:layout_gravity="center_horizontal"
+                  android:layout_weight="0.25"
+                  android:text="20°/32°"
+                  android:textColor="#000"
+                  android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/next4_day"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:layout_gravity="center_horizontal"
+                android:text="周三"
+                android:textColor="#000"
+                android:textSize="15sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:orientation="vertical" >
+            </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

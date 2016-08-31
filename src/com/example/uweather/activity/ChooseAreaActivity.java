@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -69,6 +70,12 @@ public class ChooseAreaActivity extends Activity {
      */
     private int currentLevel;
     
+    
+    /**
+     * 判断是否从天气中跳转过来
+     */
+    private boolean isFromWeatherActivity;
+     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	// TODO Auto-generated method stub
@@ -78,13 +85,16 @@ public class ChooseAreaActivity extends Activity {
     	listView=(ListView)findViewById(R.id.list_view);
     	titleView =(TextView)findViewById(R.id.title_text);
     	
-    	/*SharedPreferences preferences=PreferenceManager.getDefaultSharedPreferences(this);
-    	if (preferences.getBoolean("city_selected", false)) {
+    	isFromWeatherActivity=getIntent().getBooleanExtra("from_weather_activity", false);
+    	
+    	
+    	SharedPreferences preferences=PreferenceManager.getDefaultSharedPreferences(this);
+    	if (preferences.getBoolean("city_selected", false)&&!isFromWeatherActivity) {
 			Intent intent=new Intent(this,WeatherActivity.class);
 			startActivity(intent);
 			finish();
 			return;
-		}*/
+		}
     	
     	adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,dataList);
     	listView.setAdapter(adapter);//设置适配器
@@ -220,6 +230,12 @@ public class ChooseAreaActivity extends Activity {
 				});
 				
 			}
+
+			@Override
+			public void onFinsh(Bitmap bitmap, int i) {
+				// TODO Auto-generated method stub
+				
+			}
 		});
     	
     	
@@ -255,6 +271,10 @@ public class ChooseAreaActivity extends Activity {
 		}else if (currentLevel==LEVEL_CITY) {
 			queryProvinces();
 		}else {
+			if (isFromWeatherActivity) {
+				Intent intent=new Intent(this,WeatherActivity.class);
+				startActivity(intent);
+			}
 			finish();
 		}
     }
