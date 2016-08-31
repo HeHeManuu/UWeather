@@ -146,9 +146,7 @@ public class Utility {
 			Document doc = Jsoup.parse(response);
 			Elements nearDays=doc.select(".days7");
 			String [] week={"周日","周一","周二","周三","周四 ","周五 ","周六 "};
-			String days_temps=nearDays.select(".days7").text();
 			String days_temp=null;
-			String next_4_day=nearDays.select("div.days7 > ul > li:nth-child(5) > b").text();
 			
 			Calendar c = Calendar.getInstance();
 			c.setTime(new Date(System.currentTimeMillis()));

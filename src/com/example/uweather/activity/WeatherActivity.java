@@ -5,6 +5,7 @@ package com.example.uweather.activity;
 import java.io.File;
 
 import com.example.uweather.R;
+import com.example.uweather.service.AutoUpdateService;
 import com.example.uweather.util.HttpCallbackListener;
 import com.example.uweather.util.HttpUtil;
 import com.example.uweather.util.Utility;
@@ -261,6 +262,9 @@ public class WeatherActivity extends Activity implements OnClickListener {
 	}
 	weatherInfoLayout.setVisibility(View.VISIBLE);
 	cityNameText.setVisibility(View.VISIBLE);
+	
+	Intent intent=new Intent(this,AutoUpdateService.class);
+	startService(intent);
 	
 }
 
